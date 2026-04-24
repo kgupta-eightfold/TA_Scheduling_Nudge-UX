@@ -1,0 +1,243 @@
+/* ── v2 wrapper overrides ── */
+.floating-input-wrapper--v2 {
+  width: 680px;
+  max-width: calc(100vw - 48px);
+}
+
+.floating-input-wrapper--v2-active {
+  width: 920px;
+}
+
+/* ── The v2 bar (replaces the text input when candidates selected) ── */
+.fip-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px;
+  margin-bottom: 32px;
+  border-radius: 999px;
+  background: #fff;
+  border: 1px solid #d9dce1;
+  box-shadow:
+    0 -4px 32px 0 rgba(169, 176, 245, 0.4),
+    0 4px 24px rgba(15, 20, 31, 0.10),
+    0 0 0 1px rgba(89, 98, 183, 0.06);
+  animation: floating-input-active-jump 0.5s cubic-bezier(0.45, 0, 0.55, 1) both;
+}
+
+/* ── Avatar stack ── */
+.fip-avatar-stack {
+  display: flex;
+  flex-shrink: 0;
+}
+
+.fip-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  color: #fff;
+  font-family: 'Gilroy', -apple-system, sans-serif;
+  border: 2px solid #fff;
+  margin-left: -8px;
+  position: relative;
+}
+
+.fip-avatar:first-child {
+  margin-left: 0;
+}
+
+.fip-avatar-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* ── Selection info ── */
+.fip-selection-info {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  line-height: 1.2;
+  min-width: 72px;
+}
+
+.fip-selection-count {
+  font-size: 13px;
+  font-weight: 700;
+  color: #1a212e;
+  font-family: 'Gilroy', -apple-system, sans-serif;
+}
+
+.fip-selection-subtitle {
+  font-size: 11px;
+  font-weight: 500;
+  color: #69717f;
+  font-family: 'Gilroy', -apple-system, sans-serif;
+}
+
+/* ── Divider ── */
+.fip-divider {
+  width: 1px;
+  height: 28px;
+  background: #d9dce1;
+  flex-shrink: 0;
+}
+
+/* ── Scrollable pills track ── */
+.fip-pills-track {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex: 1;
+  min-width: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  scroll-behavior: smooth;
+}
+
+.fip-pills-track::-webkit-scrollbar {
+  display: none;
+}
+
+.fip-pills-track .oc-button {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+/* ── Scroll arrows ── */
+.fip-scroll-btn {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 1px solid #d9dce1;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  cursor: pointer;
+  transition: background 0.12s, border-color 0.12s;
+}
+
+.fip-scroll-btn:hover {
+  background: #f6f7f8;
+  border-color: #bec2ca;
+}
+
+/* ── + Ask CTA ── */
+.fip-ask-btn {
+  flex-shrink: 0;
+}
+
+/* ── Collapse separator + button ── */
+.fip-collapse-sep {
+  display: block;
+  width: 1px;
+  height: 20px;
+  background: #d9dce1;
+  flex-shrink: 0;
+  margin: 0 2px;
+}
+
+.fip-collapse-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  flex-shrink: 0;
+  color: #69717f;
+  padding: 0;
+  transition: background 0.15s;
+}
+
+.fip-collapse-btn:hover {
+  background: #f0f1f4;
+}
+
+/* ── Custom input (ask mode) ── */
+.fip-custom-input-area {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.fip-custom-input {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: 'Gilroy', -apple-system, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #1a212e;
+  line-height: 24px;
+}
+
+.fip-custom-input::placeholder {
+  color: #7a8194;
+}
+
+.fip-custom-submit {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: none;
+  background: linear-gradient(135deg, #7024d7 0%, #593cb4 55%, #983eaa 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+
+.fip-custom-submit:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.fip-custom-submit:not(:disabled):hover {
+  opacity: 0.88;
+}
+
+/* ── Close / icon buttons ── */
+.fip-icon-btn {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: none;
+  background: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  cursor: pointer;
+  transition: background 0.12s;
+}
+
+.fip-icon-btn:hover {
+  background: #f0f1f3;
+}
+
+.fip-close-btn {
+  margin-left: -2px;
+}

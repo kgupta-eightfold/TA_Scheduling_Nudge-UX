@@ -1,0 +1,573 @@
+/* Overlay — dims main UI; fades with panel */
+.native-ai-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.38s ease;
+}
+
+.native-ai-overlay--visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Panel: slides in from right, slides out to right */
+.native-ai-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: min(560px, 100vw);
+  background: #fff;
+  z-index: 1001;
+  display: flex;
+  flex-direction: column;
+  box-shadow: -8px 0 32px rgba(15, 20, 31, 0.12);
+  transform: translateX(100%);
+  transition: transform 0.38s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+
+.native-ai-panel--open {
+  transform: translateX(0);
+}
+
+.native-ai-panel--push {
+  width: 480px;
+  box-shadow: none;
+  transition: width 0.38s cubic-bezier(0.4, 0, 0.2, 1), transform 0.38s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.native-ai-panel--expanded {
+  width: 100vw !important;
+  z-index: 1200;
+}
+
+.native-ai-panel-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+/* Header — Figma: title + subtitle */
+.native-ai-panel-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px 20px 16px;
+  flex-shrink: 0;
+}
+
+.native-ai-panel-header-text {
+  min-width: 0;
+  flex: 1;
+}
+
+.native-ai-panel-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: #1a212e;
+  margin: 0 0 6px;
+  font-family: 'Gilroy', -apple-system, sans-serif;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+}
+
+.native-ai-panel-subtitle {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.45;
+  color: #69717f;
+  font-family: 'Gilroy', -apple-system, sans-serif;
+  font-weight: 400;
+}
+
+.native-ai-panel-close {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border: none;
+  background: #f6f7f8;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: background 0.15s;
+}
+
+.native-ai-panel-close:hover {
+  background: #eceef1;
+}
+
+.native-ai-panel-divider {
+  height: 1px;
+  background: #d9dce1;
+  flex-shrink: 0;
+}
+
+.native-ai-panel-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
+  padding: 0;
+}
+
+.native-ai-panel-main {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 0 20px 20px;
+  gap: 0;
+}
+
+/* Chat thread */
+.native-ai-chat-scroll {
+  flex: 1;
+  min-height: 120px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.native-ai-chat-inner {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  padding: 16px 0 8px;
+}
+
+.native-ai-chat-anchor {
+  height: 1px;
+  flex-shrink: 0;
+}
+
+.native-ai-turn {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.native-ai-avatar {
+  flex-shrink: 0;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.native-ai-avatar--recruiter {
+  width: 36px;
+  height: 36px;
+}
+
+.native-ai-avatar--ai {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  object-fit: contain;
+}
+
+.native-ai-bubble {
+  flex: 1;
+  min-width: 0;
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #1a212e;
+  font-family: 'Gilroy', -apple-system, sans-serif;
+  background: #f6f7f8;
+}
+
+.native-ai-turn--user .native-ai-bubble {
+  background: #eef0ff;
+}
+
+/* Assistant rich message */
+.native-ai-assistant-block {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.native-ai-summary {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.55;
+  color: #1a212e;
+  font-family: 'Gilroy', -apple-system, sans-serif;
+}
+
+.native-ai-summary-text {
+  color: #1a212e;
+}
+
+.native-ai-strong-fit {
+  font-weight: 700;
+  color: #1a212e;
+}
+
+/* Horizontal comparison cards inside AI response */
+.native-ai-response-cards-strip {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 6px;
+  margin: 0 -4px;
+  padding-left: 4px;
+  padding-right: 4px;
+  scrollbar-width: thin;
+}
+
+.native-ai-figma-card {
+  flex: 0 0 auto;
+  width: min(232px, 78vw);
+  min-width: 188px;
+  padding: 14px;
+  border-radius: 16px;
+  border: 1px solid #d9dce1;
+  background: #fff;
+  box-shadow: 0 1px 2px rgba(15, 20, 31, 0.06);
+}
+
+.native-ai-figma-card--recommended {
+  border-color: #593cb4;
+  box-shadow: 0 0 0 1px rgba(89, 60, 180, 0.2), 0 4px 12px rgba(89, 60, 180, 0.12);
+}
+
+.native-ai-figma-card-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.native-ai-figma-card-check {
+  flex-shrink: 0;
+  display: flex;
+  align-items: flex-start;
+  padding-top: 10px;
+}
+
+.native-ai-figma-card-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: 'Gilroy', -apple-system, sans-serif;
+  flex-shrink: 0;
+}
+
+.native-ai-figma-card-id {
+  min-width: 0;
+}
+
+.native-ai-figma-card-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: #1a212e;
+  line-height: 1.25;
+  margin-bottom: 2px;
+  font-family: 'Gilroy', -apple-system, sans-serif;
+}
+
+.native-ai-figma-card-role {
+  font-size: 12px;
+  line-height: 1.35;
+  color: #4f5666;
+  font-family: 'Gilroy', -apple-system, sans-serif;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.native-ai-figma-card-divider {
+  height: 1px;
+  background: #eceef1;
+  margin: 10px 0;
+}
+
+.native-ai-figma-card-section-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: #4f5666;
+  margin-bottom: 6px;
+  font-family: 'Gilroy', -apple-system, sans-serif;
+}
+
+.native-ai-figma-skills-metric {
+  font-size: 12px;
+  font-weight: 500;
+  color: #69717f;
+  margin-bottom: 10px;
+  font-family: 'Gilroy', -apple-system, sans-serif;
+}
+
+.native-ai-figma-card-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.native-ai-figma-card-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin-bottom: 8px;
+  font-size: 12px;
+  line-height: 1.4;
+  color: #1a212e;
+  font-family: 'Gilroy', -apple-system, sans-serif;
+}
+
+.native-ai-figma-card-row:last-child {
+  margin-bottom: 0;
+}
+
+.native-ai-figma-icon {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2px;
+}
+
+.native-ai-figma-icon--ok {
+  background: #2b8c4e;
+  color: #fff;
+}
+
+.native-ai-figma-icon--no {
+  background: #e53935;
+  color: #fff;
+}
+
+.native-ai-figma-row-text {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Footer */
+.native-ai-footer {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding-top: 8px;
+}
+
+.native-ai-advance-cta {
+  width: 100%;
+}
+
+.native-ai-advance-cta button {
+  min-height: 44px;
+  font-weight: 600;
+}
+
+.native-ai-suggestions--collapsible {
+  gap: 0;
+}
+
+.native-ai-suggestions-toggle {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 14px;
+  border: 1px solid #e4dcf5;
+  border-radius: 12px;
+  background: #faf7ff;
+  cursor: pointer;
+  font-family: 'Gilroy', -apple-system, sans-serif;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.native-ai-suggestions-toggle:hover {
+  background: #f1ebfb;
+  border-color: #d4c4ef;
+}
+
+.native-ai-suggestions-toggle-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #593cb4;
+  text-align: left;
+}
+
+.native-ai-suggestions-toggle-chevron {
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+.native-ai-suggestions-toggle-chevron--open {
+  transform: rotate(180deg);
+}
+
+.native-ai-suggestions-panel {
+  padding-top: 10px;
+}
+
+.native-ai-query-pills {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.native-ai-query-pill {
+  width: 100%;
+  text-align: left;
+  border: none;
+  cursor: pointer;
+  padding: 10px 14px;
+  border-radius: 999px;
+  font-size: 13px;
+  line-height: 1.4;
+  color: #2b3271;
+  font-family: 'Gilroy', -apple-system, sans-serif;
+  font-weight: 500;
+  background: #e8f0fe;
+  transition: background 0.15s ease;
+}
+
+.native-ai-query-pill:hover {
+  background: #d7e5fc;
+}
+
+/* Composer — light tint, purple send (Figma) */
+.native-ai-input-outer {
+  position: relative;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  background: rgba(245, 243, 252, 0.95);
+  border: 1px solid rgba(89, 98, 183, 0.18);
+  border-radius: 24px;
+  padding: 8px;
+  transition:
+    background 300ms ease-in,
+    border-color 300ms ease-in;
+}
+
+.native-ai-input-outer--selection {
+  border: 1px solid transparent;
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.92)) padding-box,
+    linear-gradient(275.929deg, #8ed0fa 0%, #a9b0f5 49%, #d8b1d4 100%) border-box;
+  background-clip: padding-box, border-box;
+  -webkit-background-clip: padding-box, border-box;
+}
+
+.native-ai-input-inner {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.85);
+}
+
+.native-ai-input-inner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 24px;
+  background: linear-gradient(90deg, #ebf7ff 0%, #f1f2ff 49%, #fbf6fb 100%);
+  opacity: 0.85;
+  transition: opacity 300ms ease-in;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.native-ai-input-outer--selection .native-ai-input-inner::before {
+  opacity: 0.35;
+}
+
+.native-ai-input-inner > * {
+  position: relative;
+  z-index: 1;
+}
+
+.native-ai-input-field {
+  flex: 1;
+  min-width: 0;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+}
+
+.native-ai-text-input {
+  width: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: 'Gilroy', -apple-system, sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  color: #1a212e;
+  line-height: 24px;
+}
+
+.native-ai-text-input::placeholder {
+  color: #7a8194;
+}
+
+.native-ai-input-outer--selection .native-ai-text-input::placeholder {
+  color: #3d4589;
+  font-weight: 500;
+}
+
+.native-ai-send-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  flex-shrink: 0;
+  transition:
+    opacity 0.15s,
+    transform 0.15s;
+  transform: rotate(90deg);
+  background: linear-gradient(135deg, #7024d7 0%, #593cb4 55%, #983eaa 100%);
+  box-shadow: 0 2px 8px rgba(89, 60, 180, 0.35);
+}
+
+.native-ai-send-btn:hover {
+  opacity: 0.92;
+}
+
+@media (max-width: 480px) {
+  .native-ai-panel {
+    width: 100vw;
+  }
+}

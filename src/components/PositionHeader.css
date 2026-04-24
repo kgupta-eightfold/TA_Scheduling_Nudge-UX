@@ -1,0 +1,185 @@
+.position-header {
+  padding: 24px 24px 0;
+}
+
+.position-top {
+  margin-bottom: 0;
+}
+
+.position-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 40px;
+  gap: 16px;
+}
+
+.position-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.position-title-group {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.position-title {
+  font-size: 28px;
+  font-weight: 600;
+  color: #1A212E;
+  margin: 0;
+  font-family: 'Gilroy', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  line-height: 40px;
+}
+
+.icon-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: none;
+  background: none;
+  border-radius: 8px;
+  cursor: pointer;
+  color: #69717F;
+  transition: background 0.15s;
+  padding: 0;
+}
+
+.icon-btn:hover {
+  background: #F6F7F8;
+}
+
+.position-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #69717F;
+  font-family: 'Gilroy', -apple-system, sans-serif;
+  font-weight: 500;
+  margin-top: 8px;
+  line-height: 24px;
+}
+
+.meta-id {
+  color: #69717F;
+}
+
+.meta-dot {
+  color: #BEC2CA;
+}
+
+.meta-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.status-dot.status-open {
+  background: #2C8CC9;
+}
+
+.status-dot.status-published {
+  background: #993838;
+}
+
+.position-tabs {
+  margin-top: 16px;
+}
+
+/* Force the Octuple dropdown overlay to allow the nested submenu to escape */
+.version-dropdown-container {
+  overflow: visible !important;
+}
+
+/* Version dropdown menu */
+.version-dropdown-menu {
+  margin: 0;
+  padding: 4px;
+  list-style: none;
+  min-width: 220px;
+}
+
+.version-dropdown-item {
+  display: block;
+  width: 100%;
+  padding: 8px 12px;
+  border: none;
+  background: none;
+  font-size: 14px;
+  font-weight: 500;
+  color: #343c4c;
+  cursor: pointer;
+  border-radius: 8px;
+  font-family: 'Gilroy', -apple-system, sans-serif;
+  text-align: left;
+  transition: background 0.12s;
+}
+
+.version-dropdown-item:hover {
+  background: #f6f7f8;
+}
+
+.version-dropdown-item.active {
+  font-weight: 600;
+  color: #2b3271;
+  background: #f0f1fa;
+}
+
+.version-dropdown-divider {
+  height: 1px;
+  margin: 4px 8px;
+  background: #ECEEF1;
+  list-style: none;
+}
+
+/* Nested "Archived" item */
+.version-dropdown-nested {
+  position: relative;
+}
+
+.version-dropdown-nested.has-active > .version-dropdown-nested-trigger {
+  color: #2b3271;
+  font-weight: 600;
+}
+
+.version-dropdown-nested-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.version-dropdown-submenu {
+  display: none;
+  position: absolute;
+  top: -4px;
+  left: 100%;
+  margin: 0;
+  padding: 4px;
+  list-style: none;
+  min-width: 200px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12), 0 1px 3px rgba(0, 0, 0, 0.08);
+  z-index: 10;
+}
+
+.version-dropdown-nested:hover > .version-dropdown-submenu {
+  display: block;
+}
+
+.version-dropdown-nested:hover > .version-dropdown-nested-trigger {
+  background: #f6f7f8;
+}

@@ -1,0 +1,586 @@
+.candidate-table-wrapper {
+  padding: 0 24px;
+}
+
+.table-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0 16px;
+}
+
+.compare-ai-toolbar {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.compare-count-pill-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 36px;
+  height: 36px;
+  padding: 0 10px;
+  border: 1px solid #a9b0f5;
+  border-radius: 999px;
+  background: #fff;
+  cursor: pointer;
+  transition:
+    background 0.15s,
+    border-color 0.15s,
+    box-shadow 0.15s;
+}
+
+.compare-count-pill-btn:hover {
+  background: #f6f7ff;
+  border-color: #593cb4;
+  box-shadow: 0 2px 8px rgba(89, 60, 180, 0.12);
+}
+
+.compare-with-ai-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #fff;
+  color: #2b3271;
+  border: 1px solid #a9b0f5;
+  border-radius: 20px;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  white-space: nowrap;
+  transition:
+    background 0.15s,
+    border-color 0.15s,
+    box-shadow 0.15s;
+}
+
+.compare-with-ai-btn:hover {
+  background: #f6f7ff;
+  border-color: #593cb4;
+  box-shadow: 0 2px 8px rgba(89, 60, 180, 0.12);
+}
+
+.interview-ai-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: linear-gradient(90deg, #8ED0FA, #A9B0F5, #D8B1D4);
+  color: #2B3271;
+  border: none;
+  border-radius: 20px;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  transition: opacity 0.15s;
+  white-space: nowrap;
+}
+
+.interview-ai-btn:hover {
+  opacity: 0.9;
+}
+
+.ai-btn-icon {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  border-radius: 4px;
+}
+
+.candidate-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'Gilroy', -apple-system, sans-serif;
+}
+
+.candidate-table thead tr {
+  border-bottom: 1px solid #D9DCE1;
+}
+
+.candidate-table th {
+  text-align: left;
+  font-size: 12px;
+  font-weight: 600;
+  color: #69717F;
+  padding: 14px 8px;
+  white-space: nowrap;
+}
+
+.th-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.th-clear-selection {
+  margin-left: 4px;
+  background: none;
+  border: none;
+  padding: 4px 10px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #146da6;
+  cursor: pointer;
+  font-family: inherit;
+  border-radius: 6px;
+  white-space: nowrap;
+  transition:
+    background 0.12s,
+    color 0.12s;
+}
+
+.th-clear-selection:hover {
+  background: #e8f4fc;
+  color: #054d7b;
+}
+
+.th-clear-selection:focus-visible {
+  outline: 2px solid #146da6;
+  outline-offset: 2px;
+}
+
+.th-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.th-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 22px;
+  height: 20px;
+  padding: 0 4px;
+  background: #ECEEF1;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #69717F;
+}
+
+.candidate-table tbody tr {
+  border-bottom: 1px solid #ECEEF1;
+  transition: background 0.1s;
+  position: relative;
+}
+
+.candidate-table tbody tr:hover {
+  background: #FAFBFC;
+}
+
+.candidate-table tbody tr.row-selected {
+  background: #F1F2FF;
+}
+
+.candidate-table td {
+  padding: 16px 8px;
+  font-size: 14px;
+  color: #4f5666;
+  vertical-align: middle;
+  overflow: visible;
+}
+
+.col-candidate {
+  width: 540px;
+}
+
+.col-date {
+  width: 210px;
+}
+
+.candidate-cell-wrap {
+  position: relative;
+  vertical-align: middle;
+}
+
+.candidate-cell-wrap--inline-mode {
+  vertical-align: top;
+}
+
+.candidate-hover-nudge {
+  position: relative;
+}
+
+.candidate-cell {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.candidate-cell--inline {
+  align-items: flex-start;
+}
+
+.candidate-cell--inline > [class*='selector'] {
+  align-self: center;
+  margin-top: 0;
+}
+
+.candidate-text-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+  flex: 1;
+}
+
+/* Inline nudge — strength · fact + View link, on row hover */
+.candidate-hover-nudge--inline .candidate-nudge-inline {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 8px 10px;
+  align-self: flex-start;
+  width: fit-content;
+  max-width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0 14px;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  background: #f5f1fc;
+  font: inherit;
+  text-align: left;
+  transform: translateY(-4px);
+  transition:
+    opacity 0.2s ease,
+    transform 0.22s cubic-bezier(0.34, 1.2, 0.64, 1),
+    max-height 0.28s ease,
+    padding 0.22s ease,
+    border-color 0.2s ease;
+  pointer-events: none;
+}
+
+.candidate-table tbody tr:hover .candidate-hover-nudge--inline .candidate-nudge-inline {
+  max-height: 160px;
+  opacity: 1;
+  padding: 8px 14px;
+  border-color: #e4dcf5;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.candidate-nudge-inline-body {
+  flex: 1;
+  min-width: 140px;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.45;
+  color: #4a3d6b;
+  font-family: 'Gilroy', -apple-system, sans-serif;
+}
+
+.candidate-nudge-inline-label {
+  font-weight: 700;
+  color: #593cb4;
+}
+
+.candidate-nudge-inline-sep {
+  margin: 0 0.35em;
+  color: #9aa3b1;
+  font-weight: 600;
+}
+
+.candidate-nudge-inline-fact {
+  font-weight: 500;
+  color: #4a3d6b;
+}
+
+.candidate-nudge-inline-sparkle {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+}
+
+/* Floating chat — pop-up card anchored to the right of the candidate name */
+.candidate-hover-nudge--popup .candidate-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  flex: 1;
+}
+
+.candidate-popup-name-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  width: 100%;
+  min-width: 0;
+}
+
+.candidate-hover-nudge--popup .candidate-popup-name-row .candidate-name {
+  flex-shrink: 0;
+  max-width: 42%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Zero-width anchor so the card floats as an overlay to the right of the name */
+.candidate-nudge-popup-anchor {
+  position: relative;
+  flex: 0 0 0;
+  width: 0;
+  min-height: 20px;
+  overflow: visible;
+}
+
+.candidate-hover-nudge--popup .candidate-nudge-tooltip {
+  position: absolute;
+  left: 8px;
+  top: 0;
+  z-index: 100;
+  width: 280px;
+  max-width: min(92vw, 320px);
+  margin: 0;
+  padding: 10px 12px 12px;
+  background: #fff;
+  border: 1px solid #e8eaf0;
+  border-radius: 10px;
+  box-shadow:
+    0 8px 28px rgba(15, 20, 31, 0.12),
+    0 0 0 1px rgba(89, 60, 180, 0.08);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(4px) scale(0.98);
+  transform-origin: left top;
+  transition:
+    opacity 0.2s ease,
+    visibility 0.2s ease,
+    transform 0.22s cubic-bezier(0.34, 1.2, 0.64, 1);
+  pointer-events: none;
+}
+
+.candidate-table tbody tr:hover .candidate-hover-nudge--popup .candidate-nudge-tooltip,
+.candidate-hover-nudge--popup.candidate-hover-nudge--active .candidate-nudge-tooltip {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0) scale(1);
+}
+
+.candidate-hover-nudge--popup.candidate-hover-nudge--active .candidate-nudge-tooltip {
+  pointer-events: auto;
+}
+
+/* Bridge the gap between name and pop-up so hover is preserved */
+.candidate-hover-nudge--popup .candidate-nudge-tooltip::after {
+  content: '';
+  position: absolute;
+  left: -10px;
+  top: 0;
+  bottom: 0;
+  width: 10px;
+}
+
+.candidate-nudge-label {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #593cb4;
+  margin-bottom: 6px;
+  font-family: 'Gilroy', -apple-system, sans-serif;
+}
+
+.candidate-nudge-text {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.45;
+  color: #343c4c;
+  font-family: 'Gilroy', -apple-system, sans-serif;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.candidate-nudge-tooltip-footer {
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px solid #eceef1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Octuple LinkButtons — vertically center label + icon in nudge CTAs */
+.candidate-table .candidate-nudge-view-btn {
+  font-size: 11px;
+  font-weight: 600;
+  min-height: 24px;
+  padding: 2px 8px;
+  line-height: 1.2;
+  border-radius: 6px;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.candidate-table .candidate-nudge-view-btn > span {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 4px;
+  line-height: 1.2;
+}
+
+.candidate-table .candidate-nudge-view-btn--ask {
+  padding-inline: 6px;
+  min-width: 0;
+}
+
+.candidate-table .candidate-nudge-view-btn--action {
+  padding-inline: 8px;
+  max-width: 160px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Overqualified: yellow–orange (Octuple orange can be cool-toned; reinforce warmth) */
+.candidate-table .candidate-nudge-view-btn--tone-overqualified {
+  background: linear-gradient(135deg, #ffd27a 0%, #ffb347 40%, #f07818 100%) !important;
+  color: #1a212e !important;
+  border: none !important;
+}
+
+.candidate-nudge-inline-ctas {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  flex-shrink: 0;
+}
+
+.candidate-nudge-inline--actionable-row {
+  flex-wrap: wrap;
+}
+
+.candidate-avatar {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: 'Gilroy', -apple-system, sans-serif;
+}
+
+.candidate-info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.candidate-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1A212E;
+  line-height: 20px;
+}
+
+.candidate-name.clickable {
+  cursor: pointer;
+  color: #146DA6;
+}
+
+.candidate-name.clickable:hover {
+  text-decoration: underline;
+  color: #054D7B;
+}
+
+.candidate-title {
+  font-size: 14px;
+  font-weight: 500;
+  color: #69717F;
+  line-height: 20px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 420px;
+}
+
+/* ODA 2.0 — same visual language as TextSelectionPopover “Analyse with AI” (inline, not position:fixed) */
+.candidate-name-row-oda {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 10px;
+  min-width: 0;
+}
+
+.oda-analyse-with-ai-btn {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px 6px 10px;
+  border: none;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #7024d7 0%, #593cb4 55%, #983eaa 100%);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  white-space: nowrap;
+  box-shadow:
+    0 4px 16px rgba(89, 60, 180, 0.32),
+    0 1px 3px rgba(15, 20, 31, 0.1);
+  transition:
+    opacity 0.15s ease,
+    visibility 0.15s ease,
+    box-shadow 0.15s;
+}
+
+.oda-analyse-with-ai-btn:hover {
+  opacity: 0.94;
+  box-shadow:
+    0 6px 20px rgba(89, 60, 180, 0.4),
+    0 1px 4px rgba(15, 20, 31, 0.12);
+}
+
+@media (hover: hover) {
+  .candidate-name-row-oda .oda-analyse-with-ai-btn {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  .candidate-name-row-oda:hover .oda-analyse-with-ai-btn,
+  .candidate-name-row-oda:focus-within .oda-analyse-with-ai-btn {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+.oda-analyse-with-ai-btn:focus-visible {
+  opacity: 1 !important;
+  visibility: visible !important;
+  outline: 2px solid #146da6;
+  outline-offset: 2px;
+}
+
+@media (hover: none) {
+  .candidate-name-row-oda .oda-analyse-with-ai-btn {
+    opacity: 1;
+    visibility: visible;
+  }
+}

@@ -1,0 +1,168 @@
+.ai-insights-popover-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1200;
+  background: rgba(26, 33, 46, 0.12);
+}
+
+.ai-insights-popover {
+  position: fixed;
+  z-index: 1210;
+  width: min(440px, calc(100vw - 24px));
+  /* Fixed height: tab strip stays put; content scrolls inside. */
+  height: min(480px, 70vh);
+  min-height: 360px;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow:
+    0 4px 24px rgba(15, 20, 31, 0.12),
+    0 8px 32px rgba(15, 20, 31, 0.08);
+  border: 1px solid #e4e7eb;
+  overflow: hidden;
+}
+
+.ai-insights-popover-top {
+  flex-shrink: 0;
+  background: #fff;
+}
+
+.ai-insights-popover-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 16px 10px;
+  border-bottom: 1px solid #eceef1;
+}
+
+.ai-insights-popover-title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #1a212e;
+  line-height: 1.3;
+}
+
+.ai-insights-popover-sub {
+  margin: 2px 0 0;
+  font-size: 13px;
+  color: #69717f;
+  line-height: 1.35;
+}
+
+.ai-insights-popover-close {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ai-insights-popover-close:hover {
+  background: #f0f2f5;
+}
+
+.ai-insights-popover-subtabs {
+  display: flex;
+  gap: 4px;
+  padding: 8px 12px;
+  background: #fff;
+  border-bottom: 1px solid #eceef1;
+}
+
+.ai-insights-popover-subtab {
+  flex: 1;
+  padding: 8px 10px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #69717f;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  transition:
+    background 0.15s,
+    color 0.15s;
+}
+
+.ai-insights-popover-subtab:hover {
+  color: #343c4c;
+  background: #f8f9fb;
+}
+
+.ai-insights-popover-subtab.active {
+  color: #146da6;
+  font-weight: 600;
+  background: #f0f7fc;
+  border-color: #c5e3f5;
+}
+
+/* Scroll region only — header + tabs stay fixed */
+.ai-insights-popover-scroll {
+  flex: 1 1 0;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 12px 14px;
+  background: #fff;
+}
+
+.ai-insights-popover-footer {
+  padding: 12px 14px 14px;
+  border-top: 1px solid #eceef1;
+  flex-shrink: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 10px;
+  background: #fff;
+}
+
+/* Neutral insight surface inside popover (no purple gradient card) */
+.ai-insights-popover-scroll .cp-ai-insights--popover {
+  margin: 0;
+  border: 1px solid #e4e7eb;
+  border-radius: 8px;
+  background: #fff;
+  background-image: none;
+}
+
+.ai-insights-popover-scroll .cp-ai-insights--popover .cp-ai-insights-summary {
+  background: #fafbfc;
+  border-radius: 8px 8px 0 0;
+}
+
+.ai-insights-popover-scroll .cp-ai-insights--popover .cp-ai-insights-icon {
+  background: #eef0f3;
+}
+
+.ai-insights-popover-scroll .cp-ai-insights--popover .cp-ai-insights-text {
+  color: #343c4c;
+}
+
+.ai-insights-popover-scroll .cp-ai-insights--popover .cp-ai-insights-text strong {
+  color: #146da6;
+}
+
+.ai-insights-popover-scroll .cp-ai-insights--popover .cp-ai-insights-toggle {
+  color: #146da6;
+}
+
+.ai-insights-popover-scroll .cp-ai-insights--popover .cp-ai-insights-toggle:hover {
+  background: #ebf7ff;
+}
+
+.ai-insights-popover-scroll .cp-ai-insights--popover .cp-ai-insights-detail {
+  border-top-color: #e4e7eb;
+}
+
+.ai-insights-popover-scroll .cp-ai-insights--popover .cp-ai-insights-item {
+  color: #343c4c;
+}

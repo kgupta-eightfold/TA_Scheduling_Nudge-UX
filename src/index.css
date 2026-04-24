@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* Gilroy – local font faces from /Assets/Gilroy Font */
+@font-face { font-family: 'Gilroy'; src: url('/Assets/Gilroy Font/Gilroy-Thin.otf') format('opentype'); font-weight: 100; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Gilroy'; src: url('/Assets/Gilroy Font/Gilroy-ThinItalic.otf') format('opentype'); font-weight: 100; font-style: italic; font-display: swap; }
+@font-face { font-family: 'Gilroy'; src: url('/Assets/Gilroy Font/Gilroy-UltraLight.otf') format('opentype'); font-weight: 200; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Gilroy'; src: url('/Assets/Gilroy Font/Gilroy-UltraLightItalic.otf') format('opentype'); font-weight: 200; font-style: italic; font-display: swap; }
+@font-face { font-family: 'Gilroy'; src: url('/Assets/Gilroy Font/Gilroy-Light.otf') format('opentype'); font-weight: 300; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Gilroy'; src: url('/Assets/Gilroy Font/Gilroy-LightItalic.otf') format('opentype'); font-weight: 300; font-style: italic; font-display: swap; }
+@font-face { font-family: 'Gilroy'; src: url('/Assets/Gilroy Font/Gilroy-Regular.otf') format('opentype'); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Gilroy'; src: url('/Assets/Gilroy Font/Gilroy-RegularItalic.otf') format('opentype'); font-weight: 400; font-style: italic; font-display: swap; }
+@font-face { font-family: 'Gilroy'; src: url('/Assets/Gilroy Font/Gilroy-Medium.otf') format('opentype'); font-weight: 500; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Gilroy'; src: url('/Assets/Gilroy Font/Gilroy-MediumItalic.otf') format('opentype'); font-weight: 500; font-style: italic; font-display: swap; }
+@font-face { font-family: 'Gilroy'; src: url('/Assets/Gilroy Font/Gilroy-SemiBold.otf') format('opentype'); font-weight: 600; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Gilroy'; src: url('/Assets/Gilroy Font/Gilroy-SemiBoldItalic.otf') format('opentype'); font-weight: 600; font-style: italic; font-display: swap; }
+@font-face { font-family: 'Gilroy'; src: url('/Assets/Gilroy Font/Gilroy-Bold.otf') format('opentype'); font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Gilroy'; src: url('/Assets/Gilroy Font/Gilroy-BoldItalic.otf') format('opentype'); font-weight: 700; font-style: italic; font-display: swap; }
+@font-face { font-family: 'Gilroy'; src: url('/Assets/Gilroy Font/Gilroy-ExtraBold.otf') format('opentype'); font-weight: 800; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Gilroy'; src: url('/Assets/Gilroy Font/Gilroy-ExtraBoldItalic.otf') format('opentype'); font-weight: 800; font-style: italic; font-display: swap; }
+@font-face { font-family: 'Gilroy'; src: url('/Assets/Gilroy Font/Gilroy-Heavy.otf') format('opentype'); font-weight: 900; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Gilroy'; src: url('/Assets/Gilroy Font/Gilroy-HeavyItalic.otf') format('opentype'); font-weight: 900; font-style: italic; font-display: swap; }
+@font-face { font-family: 'Gilroy'; src: url('/Assets/Gilroy Font/Gilroy-Black.otf') format('opentype'); font-weight: 950; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Gilroy'; src: url('/Assets/Gilroy Font/Gilroy-BlackItalic.otf') format('opentype'); font-weight: 950; font-style: italic; font-display: swap; }
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Octuple Button / LinkButton use var(--button-font-family) → Inter by default */
+:root {
+  --button-font-family: 'Gilroy', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+body {
+  margin: 0;
+  font-family: 'Gilroy', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: #FFFFFF;
+  color: #1A212E;
+}
+
+#root {
+  min-height: 100vh;
+}

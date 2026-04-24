@@ -1,0 +1,11 @@
+---
+description: Brand logo assets and usage
+alwaysApply: true
+---
+
+# Brand Logos
+
+- **Eightfold logo** (navbar/title bar): `/public/eightfold-logo.png` — used as `<img>` in `Navbar.tsx`
+- **AI Interview logo** (panel header): `/public/ai-interview-logo.png` — used as `<img>` in `AIInterviewPanel.tsx`
+
+When adding new views or layouts that need branding, reuse these assets from `/public/`.

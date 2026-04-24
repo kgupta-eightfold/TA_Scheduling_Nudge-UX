@@ -1,0 +1,214 @@
+.app-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  position: relative;
+  transition: padding-right 0.38s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.app-shell--ai-push {
+  padding-right: 481px; /* 480px panel + 1px gap */
+  background: #f5f5f5; /* grey 1 */
+}
+
+.app-main {
+  flex: 1;
+  max-width: 1440px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* ── Floating AI Input ── */
+.floating-input-wrapper {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 900;
+  width: 560px;
+  max-width: calc(100% - 48px);
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transition:
+    opacity 0.4s ease,
+    visibility 0.4s ease,
+    transform 0.4s ease;
+}
+
+.floating-input-wrapper--assistant-open {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateX(-50%) translateY(12px);
+}
+
+/* Active state: jump up, then back down to rest */
+@keyframes floating-input-active-jump {
+  0% {
+    transform: translateY(0);
+  }
+  38% {
+    transform: translateY(-22px);
+  }
+  78% {
+    transform: translateY(6px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.floating-input {
+  position: relative;
+  transform: translateY(0);
+  transform-origin: center bottom;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid var(--blue-gradient-end-color-10);
+  border-radius: 24px;
+  padding: 8px;
+  margin-bottom: 12px;
+  transition:
+    background 300ms ease-in,
+    border-color 300ms ease-in,
+    box-shadow 300ms ease-in,
+    margin-bottom 0.55s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.floating-input:not(.floating-input--has-selection):hover {
+  box-shadow: 0 -4px 32px 0 rgba(169, 176, 245, 0.4);
+}
+
+/* Selected candidates: 1px border = linear gradient (CSS has no gradient border-color) */
+.floating-input--has-selection {
+  margin-bottom: 20px;
+  box-shadow: 0 -4px 32px 0 rgba(169, 176, 245, 0.4);
+  border: 1px solid transparent;
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)) padding-box,
+    linear-gradient(275.929deg, #8ed0fa 0%, #a9b0f5 49%, #d8b1d4 100%) border-box;
+  background-clip: padding-box, border-box;
+  -webkit-background-clip: padding-box, border-box;
+  animation: floating-input-active-jump 0.6s cubic-bezier(0.45, 0, 0.55, 1) both;
+}
+
+.floating-input--has-selection .floating-text-input::placeholder {
+  color: #3d4589;
+  font-weight: 500;
+}
+
+/* Inner: white base + gradient on ::before so active state can dissolve (opacity) */
+.floating-input-inner {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 1);
+}
+
+.floating-input-inner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 24px;
+  background: linear-gradient(90deg, #ebf7ff 0%, #f1f2ff 49%, #fbf6fb 100%);
+  opacity: 1;
+  transition: opacity 300ms ease-in;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.floating-input--has-selection .floating-input-inner::before {
+  opacity: 0;
+}
+
+.floating-input-inner > * {
+  position: relative;
+  z-index: 1;
+}
+
+.floating-input-field {
+  flex: 1;
+  min-width: 0;
+  border-bottom: none;
+  border-image: none;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+}
+
+.floating-text-input {
+  width: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: 'Gilroy', -apple-system, sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  color: #1A212E;
+  line-height: 24px;
+}
+
+.floating-text-input::placeholder {
+  color: #5962B7;
+  transition: color 300ms ease-in;
+}
+
+.floating-send-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #C8CBF2 0%, #E0D0E8 100%);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  flex-shrink: 0;
+  transition: opacity 0.15s;
+  transform: rotate(90deg);
+}
+
+.floating-send-btn:hover {
+  opacity: 0.85;
+}
+
+/* ── Snackbar / Toast override — must sit above all portals ── */
+[class*="snackbar-container"] {
+  z-index: 9999 !important;
+  position: fixed !important;
+  top: 0 !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  pointer-events: none;
+}
+
+[class*="snackbar-container"] > * {
+  pointer-events: auto;
+  animation: snackbar-slide-in 0.3s ease-out;
+}
+
+[class*="snackbar-container"] [class*="info-bar"] {
+  padding-top: 4px !important;
+  padding-bottom: 4px !important;
+  margin-top: 24px !important;
+}
+
+@keyframes snackbar-slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
