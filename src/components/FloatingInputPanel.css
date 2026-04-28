@@ -1,3 +1,28 @@
+@property --fip-angle {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@keyframes fip-copilot-border {
+  0% {
+    --fip-angle: 0deg;
+    box-shadow:
+      0 0 22px 6px rgba(142, 208, 250, 0.7),
+      0 -4px 16px 0 #A9B0F566;
+  }
+  65% {
+    --fip-angle: 270deg;
+    box-shadow:
+      0 0 14px 3px rgba(169, 176, 245, 0.5),
+      0 -4px 16px 0 #A9B0F566;
+  }
+  100% {
+    --fip-angle: 360deg;
+    box-shadow: 0 -4px 16px 0 #A9B0F566;
+  }
+}
+
 /* ── v2 wrapper overrides ── */
 .floating-input-wrapper--v2 {
   width: 680px;
@@ -16,13 +41,14 @@
   padding: 16px;
   margin-bottom: 32px;
   border-radius: 999px;
-  background: #fff;
-  border: 1px solid #d9dce1;
-  box-shadow:
-    0 -4px 32px 0 rgba(169, 176, 245, 0.4),
-    0 4px 24px rgba(15, 20, 31, 0.10),
-    0 0 0 1px rgba(89, 98, 183, 0.06);
-  animation: floating-input-active-jump 0.5s cubic-bezier(0.45, 0, 0.55, 1) both;
+  --fip-angle: 0deg;
+  border: 2px solid transparent;
+  background:
+    linear-gradient(rgba(255,255,255,0.92), rgba(255,255,255,0.92)) padding-box,
+    linear-gradient(135deg, #8ED0FA 0%, #A9B0F5 49%, #D8B1D4 100%) border-box;
+  animation:
+    floating-input-active-jump 0.5s cubic-bezier(0.45, 0, 0.55, 1) both,
+    fip-copilot-border 2s cubic-bezier(0.4, 0, 0.6, 1) 1 forwards;
 }
 
 /* ── Avatar stack ── */
