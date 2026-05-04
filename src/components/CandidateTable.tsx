@@ -24,6 +24,7 @@ import {
 import InlineChatMiniModal from './InlineChatMiniModal';
 import AiInsightsPopover from './AiInsightsPopover';
 import FreeWorldCandidateList from './FreeWorldCandidateList';
+import aiInterviewLogo from '/ai-interview-logo.png';
 import './CandidateTable.css';
 
 export type NudgeDisplayMode =
@@ -201,7 +202,7 @@ export default function CandidateTable({
     <div className="candidate-table-wrapper">
       <div className="table-actions">
         <button className="interview-ai-btn" onClick={onInterviewWithAI}>
-          <img src="/ai-interview-logo.png" alt="" className="ai-btn-icon" />
+          <img src={aiInterviewLogo} alt="" className="ai-btn-icon" />
           Interview with AI
         </button>
         <Button text="Schedule" variant={ButtonVariant.Secondary}>

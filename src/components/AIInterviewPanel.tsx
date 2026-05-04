@@ -34,6 +34,7 @@ import AddAssessmentPanel from './AddAssessmentPanel';
 import ManageSectionsView from './ManageSectionsView';
 import EditSettingsModal from './EditSettingsModal';
 import InterviewLibraryPanel from './InterviewLibraryPanel';
+import aiInterviewLogo from '/ai-interview-logo.png';
 import './AIInterviewPanel.css';
 
 export interface InterviewSettings {
@@ -433,7 +434,7 @@ export default function AIInterviewPanel({ open, onClose }: AIInterviewPanelProp
         {/* Header */}
         <div className="panel-header">
           <div className="panel-header-left">
-            <img src="/ai-interview-logo.png" alt="AI Interview" className="ai-logo-icon" />
+            <img src={aiInterviewLogo} alt="AI Interview" className="ai-logo-icon" />
             <h2 className="panel-title">AI interview</h2>
           </div>
           <div className="panel-header-right">

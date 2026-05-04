@@ -11,6 +11,7 @@ import {
 } from '@mdi/js';
 import { Button, ButtonSize, ButtonVariant, Tooltip } from '@eightfold.ai/octuple';
 import type { Candidate } from '../data/candidates';
+import aiInterviewLogo from '/ai-interview-logo.png';
 import './Oda4ComparePanel.css';
 
 /** Split "Role, Company" from title, skipping duplicate segments */
@@ -253,7 +254,7 @@ export default function Oda4ComparePanel({
                 {/* User prompt bubble */}
                 <div className="oda4-user-bubble">
                   <div className="oda4-user-avatar">
-                    <img src="/ai-interview-logo.png" alt="" />
+                    <img src={aiInterviewLogo} alt="" />
                   </div>
                   <span className="oda4-user-text">{displayPrompt}</span>
                 </div>
@@ -261,7 +262,7 @@ export default function Oda4ComparePanel({
                 {/* AI response */}
                 <div className="oda4-ai-response">
                   <div className="oda4-ai-icon">
-                    <img src="/ai-interview-logo.png" alt="" />
+                    <img src={aiInterviewLogo} alt="" />
                   </div>
                   <div className="oda4-ai-content">
                     {best && (

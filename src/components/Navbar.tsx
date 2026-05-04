@@ -1,5 +1,6 @@
 import { Icon } from '@mdi/react';
 import { mdiMagnify, mdiChevronDown } from '@mdi/js';
+import eightfoldLogo from '/eightfold-logo.png';
 import './Navbar.css';
 
 const navItems = ['Positions', 'Scheduling Center', 'Insights', 'Settings'];
@@ -9,7 +10,7 @@ export default function Navbar() {
     <nav className="navbar">
       <div className="navbar-left">
         <div className="navbar-logo">
-          <img src="/eightfold-logo.png" alt="Logo" className="navbar-logo-img" />
+          <img src={eightfoldLogo} alt="Logo" className="navbar-logo-img" />
           <span className="navbar-brand">eightfold.ai</span>
         </div>
         <ul className="navbar-links">
