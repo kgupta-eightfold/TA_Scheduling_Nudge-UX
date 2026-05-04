@@ -219,6 +219,18 @@
   color: #1a212e;
 }
 
+/* Wrapper for cards strip + contextual expand button */
+.oda4-cards-strip-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.oda4-cards-expand-row {
+  display: flex;
+  justify-content: flex-start;
+}
+
 /* Comparison cards scrolling strip */
 .oda4-cards-strip {
   display: flex;

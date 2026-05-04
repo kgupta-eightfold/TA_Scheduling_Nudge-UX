@@ -9,7 +9,7 @@ import {
   mdiChevronDown,
   mdiChevronUp,
 } from '@mdi/js';
-import { Button, ButtonSize, ButtonVariant, Tooltip } from '@eightfold.ai/octuple';
+import { Button, ButtonSize, ButtonVariant, IconName, Tooltip } from '@eightfold.ai/octuple';
 import type { Candidate } from '../data/candidates';
 import aiInterviewLogo from '/ai-interview-logo.png';
 import './Oda4ComparePanel.css';
@@ -287,10 +287,24 @@ export default function Oda4ComparePanel({
 
                     {/* Horizontal comparison cards strip */}
                     {sorted.length > 0 && (
-                      <div className="oda4-cards-strip">
-                        {sorted.map((c) => (
-                          <CandidateCard key={c.id} candidate={c} />
-                        ))}
+                      <div className="oda4-cards-strip-wrapper">
+                        <div className="oda4-cards-strip">
+                          {sorted.map((c) => (
+                            <CandidateCard key={c.id} candidate={c} />
+                          ))}
+                        </div>
+                        {!expanded && (
+                          <div className="oda4-cards-expand-row">
+                            <Button
+                              text="Expand"
+                              variant={ButtonVariant.Neutral}
+                              size={ButtonSize.Small}
+                              iconProps={{ path: IconName.mdiArrowExpand }}
+                              onClick={() => setExpanded(true)}
+                              ariaLabel="Expand panel"
+                            />
+                          </div>
+                        )}
                       </div>
                     )}
                   </div>
