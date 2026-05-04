@@ -14,21 +14,26 @@ import { Icon } from '@mdi/react';
 import { mdiChevronRight } from '@mdi/js';
 import './PositionHeader.css';
 
+const showAllVersions = import.meta.env.VITE_SHOW_ALL_VERSIONS === 'true';
+
 const TOP_LEVEL_VERSIONS = [
-  { id: 'floating-input-v3', label: 'Floating panel v3' },
-  { id: 'od-actionable', label: 'OD Actionable' },
-  { id: 'oda-2-0', label: 'ODA 2.0' },
-  { id: 'oda-3', label: 'ODA 3' },
-  { id: 'free-world', label: 'Free world' },
+  { id: 'oda-4', label: 'ODA 4' },
 ] as const;
 
-const ARCHIVED_VERSIONS = [
-  { id: 'floating-chat', label: 'Floating chat' },
-  { id: 'floating-input-v2', label: 'Floating input panel v2' },
-  { id: 'inline-nudges', label: 'Inline nudges' },
-  { id: 'inline-chat', label: 'Inline chat' },
-  { id: 'actionable', label: 'Actionable' },
-] as const;
+const ARCHIVED_VERSIONS = showAllVersions
+  ? ([
+      { id: 'oda-3', label: 'ODA 3' },
+      { id: 'floating-input-v3', label: 'Floating panel v3' },
+      { id: 'od-actionable', label: 'OD Actionable' },
+      { id: 'oda-2-0', label: 'ODA 2.0' },
+      { id: 'free-world', label: 'Free world' },
+      { id: 'floating-chat', label: 'Floating chat' },
+      { id: 'floating-input-v2', label: 'Floating input panel v2' },
+      { id: 'inline-nudges', label: 'Inline nudges' },
+      { id: 'inline-chat', label: 'Inline chat' },
+      { id: 'actionable', label: 'Actionable' },
+    ] as const)
+  : ([] as const);
 
 const ALL_VERSIONS = [...TOP_LEVEL_VERSIONS, ...ARCHIVED_VERSIONS];
 

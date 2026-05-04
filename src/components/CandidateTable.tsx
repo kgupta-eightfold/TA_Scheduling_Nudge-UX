@@ -32,7 +32,8 @@ export type NudgeDisplayMode =
   | 'inlineChat'
   | 'actionable'
   | 'oda20'
-  | 'freeWorld';
+  | 'freeWorld'
+  | 'none';
 
 interface CandidateTableProps {
   onInterviewWithAI: () => void;

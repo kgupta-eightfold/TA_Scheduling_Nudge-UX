@@ -151,6 +151,20 @@ export function buildAssistantReply(
   return { summaryBody, recommendedName, recommendedCandidateId, cards };
 }
 
+function MatchScoreBadge({ score }: { score: number }) {
+  const pct = Math.round((score / 5) * 100);
+  const color =
+    pct >= 80 ? { fg: '#2B715F', bg: '#F0FEFA' } :
+    pct >= 60 ? { fg: '#054D7B', bg: '#EBF7FF' } :
+                { fg: '#78351A', bg: '#FFF2ED' };
+  return (
+    <div className="native-ai-match-score" style={{ color: color.fg, background: color.bg }}>
+      <span className="native-ai-match-score-pct">{pct}%</span>
+      <span className="native-ai-match-score-label">Match</span>
+    </div>
+  );
+}
+
 export function ComparisonCardFigma({
   card,
   isRecommended,
@@ -191,8 +205,13 @@ export function ComparisonCardFigma({
           </div>
         )}
         <div className="native-ai-figma-card-id">
-          <div className="native-ai-figma-card-name">{candidate.name}</div>
-          <div className="native-ai-figma-card-role">{formatRoleLine(candidate)}</div>
+          <div className="native-ai-figma-card-id-text">
+            <div className="native-ai-figma-card-name">{candidate.name}</div>
+            <div className="native-ai-figma-card-role">{formatRoleLine(candidate)}</div>
+          </div>
+          {candidate.matchScore != null && (
+            <MatchScoreBadge score={candidate.matchScore} />
+          )}
         </div>
       </div>
       <div className="native-ai-figma-card-divider" />

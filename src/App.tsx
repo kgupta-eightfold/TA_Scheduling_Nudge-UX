@@ -9,6 +9,7 @@ import NativeAIAssistantPanel from './components/NativeAIAssistantPanel';
 import CandidateProfilePanel from './components/CandidateProfilePanel';
 import CandidateInsightPanel from './components/CandidateInsightPanel';
 import FloatingInputPanel from './components/FloatingInputPanel';
+import Oda4ComparePanel from './components/Oda4ComparePanel';
 import TextSelectionPopover from './components/TextSelectionPopover';
 import { candidates, type Candidate } from './data/candidates';
 import type { CandidateNudge } from './data/candidateNudges';
@@ -24,8 +25,10 @@ function App() {
   const [insightCandidate, setInsightCandidate] = useState<Candidate | null>(null);
   const [insightNudge, setInsightNudge] = useState<CandidateNudge | null>(null);
   const [selectedIds, setSelectedIds] = useState<Set<string>>(() => new Set());
-  const [nudgeVersion, setNudgeVersion] = useState('floating-chat');
+  const [nudgeVersion, setNudgeVersion] = useState('oda-4');
   const [assistantLaunchPrompt, setAssistantLaunchPrompt] = useState<string | null>(null);
+  const [oda4PanelOpen, setOda4PanelOpen] = useState(false);
+  const [oda4PanelPrompt, setOda4PanelPrompt] = useState<string | null>(null);
 
   const consumeAssistantLaunchPrompt = useCallback(() => {
     setAssistantLaunchPrompt(null);
@@ -93,12 +96,14 @@ function App() {
     nudgeVersion === 'od-actionable' ||
     nudgeVersion === 'oda-2-0' ||
     nudgeVersion === 'free-world' ||
-    (nudgeVersion === 'oda-3' && hasSelection);
+    (nudgeVersion === 'oda-3' && hasSelection) ||
+    (nudgeVersion === 'oda-4' && hasSelection);
 
   const showProfileFloatingBar =
     nudgeVersion !== 'floating-input-v3' &&
     nudgeVersion !== 'od-actionable' &&
-    nudgeVersion !== 'free-world';
+    nudgeVersion !== 'free-world' &&
+    nudgeVersion !== 'oda-4';
 
   const nudgeDisplayMode =
     nudgeVersion === 'inline-nudges'
@@ -107,6 +112,8 @@ function App() {
         ? 'inlineChat'
         : nudgeVersion === 'oda-2-0' || nudgeVersion === 'oda-3'
           ? 'oda20'
+          : nudgeVersion === 'oda-4'
+            ? 'none'
           : nudgeVersion === 'free-world'
             ? 'freeWorld'
             : nudgeVersion === 'actionable' ||
@@ -129,7 +136,7 @@ function App() {
   }, []);
 
   return (
-    <div className={`app-shell${nudgeVersion === 'oda-3' && nativeAssistantOpen ? ' app-shell--ai-push' : ''}`}>
+    <div className={`app-shell${((nudgeVersion === 'oda-3' && nativeAssistantOpen) || (nudgeVersion === 'oda-4' && oda4PanelOpen)) ? ' app-shell--ai-push' : ''}`}>
       <Navbar />
       <div className="app-main">
         <PositionHeader
@@ -153,17 +160,28 @@ function App() {
       </div>
       {showFloatingInputBar && (
         <FloatingInputPanel
-          variant={nudgeVersion === 'floating-input-v2' || nudgeVersion === 'floating-input-v3' || nudgeVersion === 'oda-3' ? 'v2' : 'v1'}
+          variant={nudgeVersion === 'floating-input-v2' || nudgeVersion === 'floating-input-v3' || nudgeVersion === 'oda-3' ? 'v2' : nudgeVersion === 'oda-4' ? 'v4' : 'v1'}
           hasSelection={hasSelection}
           placeholder={floatingPlaceholder}
           selectedCandidates={selectedCandidates}
-          onOpenAssistant={() => setNativeAssistantOpen(true)}
+          onOpenAssistant={() => {
+            if (nudgeVersion === 'oda-4') {
+              setOda4PanelOpen(true);
+            } else {
+              setNativeAssistantOpen(true);
+            }
+          }}
           onOpenAssistantWithPrompt={(prompt) => {
-            setAssistantLaunchPrompt(prompt);
-            setNativeAssistantOpen(true);
+            if (nudgeVersion === 'oda-4') {
+              setOda4PanelPrompt(prompt);
+              setOda4PanelOpen(true);
+            } else {
+              setAssistantLaunchPrompt(prompt);
+              setNativeAssistantOpen(true);
+            }
           }}
           onClearSelection={() => setSelectedIds(new Set())}
-          dimmed={nativeAssistantOpen || insightCandidate !== null}
+          dimmed={nativeAssistantOpen || oda4PanelOpen || insightCandidate !== null}
         />
       )}
 
@@ -176,6 +194,12 @@ function App() {
         initialUserPrompt={assistantLaunchPrompt}
         onInitialUserPromptConsumed={consumeAssistantLaunchPrompt}
         pushMode={nudgeVersion === 'oda-3'}
+      />
+      <Oda4ComparePanel
+        open={oda4PanelOpen}
+        onClose={() => setOda4PanelOpen(false)}
+        prompt={oda4PanelPrompt}
+        selectedCandidates={selectedCandidates}
       />
       <CandidateInsightPanel
         open={insightCandidate !== null && insightNudge !== null}
@@ -201,7 +225,7 @@ function App() {
           setNativeAssistantOpen(true);
         }}
       />
-      <TextSelectionPopover />
+      {nudgeVersion !== 'oda-4' && <TextSelectionPopover />}
       {createPortal(<SnackbarContainer />, document.body)}
     </div>
   );

@@ -6,7 +6,7 @@ import type { Candidate } from '../data/candidates';
 import { getAssistantPromptSuggestions } from '../data/assistantPromptSuggestions';
 import './FloatingInputPanel.css';
 
-export type FloatingInputPanelVariant = 'v1' | 'v2';
+export type FloatingInputPanelVariant = 'v1' | 'v2' | 'v4';
 
 interface FloatingInputPanelProps {
   variant: FloatingInputPanelVariant;
@@ -20,14 +20,23 @@ interface FloatingInputPanelProps {
   onCollapse?: () => void;
 }
 
-function AvatarStack({ candidates: list }: { candidates: Candidate[] }) {
-  const shown = list.slice(0, 3);
+function AvatarStack({
+  candidates: list,
+  showOverflow,
+  maxShown = 3,
+}: {
+  candidates: Candidate[];
+  showOverflow?: boolean;
+  maxShown?: number;
+}) {
+  const shown = list.slice(0, maxShown);
+  const overflowCount = list.length - maxShown;
   return (
     <div className="fip-avatar-stack">
       {shown.map((c, i) => (
         <div
           key={c.id}
-          className="fip-avatar"
+          className={`fip-avatar${c.avatarSrc ? ' fip-avatar--photo' : ''}`}
           style={{
             backgroundColor: c.avatarColor,
             zIndex: shown.length - i,
@@ -41,6 +50,9 @@ function AvatarStack({ candidates: list }: { candidates: Candidate[] }) {
           )}
         </div>
       ))}
+      {showOverflow && overflowCount > 0 && (
+        <div className="fip-avatar fip-avatar--overflow">+{overflowCount}</div>
+      )}
     </div>
   );
 }
@@ -128,6 +140,8 @@ export default function FloatingInputPanel({
 
   const isV2 = variant === 'v2';
   const showV2Bar = isV2 && hasSelection;
+  const isV4 = variant === 'v4';
+  const showV4Bar = isV4 && hasSelection;
 
   if (isV2) {
     return (
@@ -192,7 +206,7 @@ export default function FloatingInputPanel({
                     <Button
                       key={s.id}
                       text={s.label}
-                      variant={ButtonVariant.Neutral}
+                      variant={ButtonVariant.Default}
                       size={ButtonSize.Small}
                       shape={ButtonShape.Pill}
                       onClick={() => handlePillClick(s.label)}
@@ -256,6 +270,78 @@ export default function FloatingInputPanel({
                 aria-label="Open AI assistant"
                 onClick={() => onOpenAssistant()}
               >
+                <Icon path={mdiArrowUp} size={0.85} color="#2B3271" />
+              </button>
+            </div>
+          </div>
+        )}
+      </div>
+    );
+  }
+
+  if (isV4) {
+    return (
+      <div className={`floating-input-wrapper floating-input-wrapper--v4${dimmed ? ' floating-input-wrapper--assistant-open' : ''}${showV4Bar ? ' floating-input-wrapper--v4-active' : ''}`}>
+        {showV4Bar ? (
+          <div className="fip-v4-card">
+            <div className="fip-v4-inner">
+              {/* Avatar bubble */}
+              <div className="fip-v4-avatar-bubble">
+                <AvatarStack candidates={selectedCandidates} showOverflow maxShown={2} />
+              </div>
+
+              {/* Pills track */}
+              <div className="fip-v4-pills-area">
+                {canScrollLeft && (
+                  <button type="button" className="fip-scroll-btn fip-scroll-btn--left" aria-label="Scroll prompts left" onClick={() => scrollPills('left')}>
+                    <Icon path={mdiChevronLeft} size={0.7} color="#4f5666" />
+                  </button>
+                )}
+                <div className="fip-pills-track" ref={pillsRef}>
+                  {suggestions.map((s) => (
+                    <button
+                      key={s.id}
+                      type="button"
+                      className="fip-v4-pill"
+                      onClick={() => handlePillClick(s.label)}
+                    >
+                      {s.label}
+                    </button>
+                  ))}
+                </div>
+                {canScrollRight && (
+                  <button type="button" className="fip-scroll-btn fip-scroll-btn--right" aria-label="Scroll prompts right" onClick={() => scrollPills('right')}>
+                    <Icon path={mdiChevronRight} size={0.7} color="#4f5666" />
+                  </button>
+                )}
+              </div>
+
+              {/* Ask AI bubble */}
+              <div className="fip-v4-ask-bubble">
+                <button type="button" className="fip-v4-ask-btn" onClick={() => onOpenAssistant()}>
+                  <span className="fip-v4-ask-icon">+</span>
+                  <span>Ask AI</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        ) : (
+          <div className={`floating-input${hasSelection ? ' floating-input--has-selection' : ''}`}>
+            <div className="floating-input-inner">
+              <div className="floating-input-field">
+                <input
+                  type="text"
+                  placeholder={placeholder}
+                  className="floating-text-input"
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' && !e.shiftKey) {
+                      e.preventDefault();
+                      onOpenAssistant();
+                    }
+                  }}
+                />
+              </div>
+              <button type="button" className="floating-send-btn" aria-label="Open AI assistant" onClick={() => onOpenAssistant()}>
                 <Icon path={mdiArrowUp} size={0.85} color="#2B3271" />
               </button>
             </div>

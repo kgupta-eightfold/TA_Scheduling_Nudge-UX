@@ -64,7 +64,7 @@ export const candidates: Candidate[] = [
     id: '3',
     initials: 'KG',
     name: 'Kabir Gupta',
-    title: 'Senior Engineering Manager, Senior Engineering Manager, Enterprise…',
+    title: 'Senior Engineering Manager, Enterprise Solutions',
     applicationDate: 'Jun 13th, 2025',
     avatarColor: '#9D6309',
     location: 'Santa Clara, CA',
