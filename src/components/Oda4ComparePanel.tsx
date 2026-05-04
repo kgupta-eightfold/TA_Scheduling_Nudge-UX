@@ -3,6 +3,7 @@ import { Icon } from '@mdi/react';
 import {
   mdiClose,
   mdiArrowExpand,
+  mdiArrowCollapse,
   mdiArrowUp,
   mdiCheckCircle,
   mdiCloseCircle,
@@ -230,7 +231,7 @@ export default function Oda4ComparePanel({
               onClick={() => setExpanded((e) => !e)}
               aria-label={expanded ? 'Collapse panel' : 'Expand panel'}
             >
-              <Icon path={mdiArrowExpand} size={0.8} color="#343c4c" />
+              <Icon path={expanded ? mdiArrowCollapse : mdiArrowExpand} size={0.8} color="#ffffff" />
             </button>
             <button
               type="button"
@@ -238,7 +239,7 @@ export default function Oda4ComparePanel({
               onClick={onClose}
               aria-label="Close panel"
             >
-              <Icon path={mdiClose} size={0.8} color="#343c4c" />
+              <Icon path={mdiClose} size={0.8} color="#ffffff" />
             </button>
           </div>
         </div>
@@ -293,18 +294,16 @@ export default function Oda4ComparePanel({
                             <CandidateCard key={c.id} candidate={c} />
                           ))}
                         </div>
-                        {!expanded && (
-                          <div className="oda4-cards-expand-row">
-                            <Button
-                              text="Expand"
-                              variant={ButtonVariant.Neutral}
-                              size={ButtonSize.Small}
-                              iconProps={{ path: IconName.mdiArrowExpand }}
-                              onClick={() => setExpanded(true)}
-                              ariaLabel="Expand panel"
-                            />
-                          </div>
-                        )}
+                        <div className="oda4-cards-expand-row">
+                          <Button
+                            text={expanded ? 'Collapse' : 'Expand'}
+                            variant={ButtonVariant.Neutral}
+                            size={ButtonSize.Small}
+                            iconProps={{ path: expanded ? IconName.mdiArrowCollapse : IconName.mdiArrowExpand }}
+                            onClick={() => setExpanded((e) => !e)}
+                            ariaLabel={expanded ? 'Collapse panel' : 'Expand panel'}
+                          />
+                        </div>
                       </div>
                     )}
                   </div>

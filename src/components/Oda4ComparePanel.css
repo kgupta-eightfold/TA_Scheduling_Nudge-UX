@@ -27,13 +27,14 @@
   z-index: 1200;
 }
 
-/* Header */
+/* Header — gradient background matching Figma */
 .oda4-header {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 24px;
   padding: 16px 24px;
   flex-shrink: 0;
+  background: linear-gradient(90deg, #146da6 0%, #414996 49%, #7e3a77 100%);
 }
 
 .oda4-header-text {
@@ -48,7 +49,7 @@
   font-family: 'Gilroy', -apple-system, sans-serif;
   font-size: 20px;
   font-weight: 600;
-  color: #1a212e;
+  color: #ffffff;
   margin: 0;
   line-height: 28px;
 }
@@ -57,7 +58,7 @@
   font-family: 'Gilroy', -apple-system, sans-serif;
   font-size: 12px;
   font-weight: 500;
-  color: #4f5666;
+  color: rgba(255, 255, 255, 0.8);
   margin: 0;
   line-height: 16px;
 }
@@ -67,7 +68,6 @@
   align-items: center;
   gap: 4px;
   flex-shrink: 0;
-  padding-top: 2px;
 }
 
 .oda4-icon-btn {
@@ -75,7 +75,7 @@
   height: 36px;
   border-radius: 50%;
   border: none;
-  background: #f6f7f8;
+  background: rgba(255, 255, 255, 0.15);
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -85,7 +85,7 @@
 }
 
 .oda4-icon-btn:hover {
-  background: #eceef1;
+  background: rgba(255, 255, 255, 0.25);
 }
 
 /* Body — gradient background, scrollable */
